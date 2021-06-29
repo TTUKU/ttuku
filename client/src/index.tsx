@@ -2,8 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Root from './Root'
 import './assets/style.scss'
+import { RecoilRoot } from 'recoil'
 
-ReactDOM.render(<Root />, document.getElementById('root'))
+ReactDOM.render(
+    <RecoilRoot>
+        <Root />
+    </RecoilRoot>,
+    document.getElementById('root'),
+)
 
 // Hot Module Replacement (HMR) - Remove this snippet to remove HMR.
 // Learn more: https://snowpack.dev/concepts/hot-module-replacement
