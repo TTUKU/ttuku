@@ -1,6 +1,8 @@
 import { PassportStrategy } from '@nestjs/passport'
 import { Strategy as DiscordStrategy } from 'passport-discord'
+import { Injectable } from '@nestjs/common'
 
+@Injectable()
 export class Discord extends PassportStrategy(DiscordStrategy) {
     constructor() {
         super({
