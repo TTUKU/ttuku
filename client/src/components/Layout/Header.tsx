@@ -4,13 +4,15 @@ import Logo from '../../assets/img/menu_logo.png'
 import { useHistory } from 'react-router-dom'
 
 const Container = styled.div`
-    background: #ffc000;
-    padding: 5px 20px;
+    background: #5865f2;
+    padding: 8px 40px;
     display: flex;
     align-items: center;
     user-select: none;
+
     .logo {
         cursor: pointer;
+        height: 40px;
     }
 `
 
