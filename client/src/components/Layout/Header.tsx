@@ -5,10 +5,11 @@ import { useHistory } from 'react-router-dom'
 
 const Container = styled.div`
     background: #5865f2;
-    padding: 8px 40px;
+    padding: 12px 40px;
     display: flex;
     align-items: center;
     user-select: none;
+    justify-content: center;
 
     .logo {
         cursor: pointer;
