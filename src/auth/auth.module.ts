@@ -4,10 +4,19 @@ import { AuthController } from './auth.controller'
 import { Discord } from './strategy'
 import { masterOnly } from '../util'
 import { UserModule } from '../user/user.module'
+import { JwtModule } from '@nestjs/jwt'
 
 @Module({
     providers: [AuthService, ...masterOnly(Discord)],
     controllers: [...masterOnly(AuthController)],
-    imports: [UserModule],
+    imports: [
+        UserModule,
+        JwtModule.register({
+            secret: process.env.JWT_SECRET,
+            verifyOptions: {
+                ignoreExpiration: false,
+            },
+        }),
+    ],
 })
 export class AuthModule {}
