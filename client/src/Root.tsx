@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { HashRouter } from 'react-router-dom'
 import App from './App'
-import { useRecoilState, useRecoilValue } from "recoil";
-import { tokenState, userState } from "./state";
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { tokenState, userState } from './state'
 
 const Root = () => {
     const token = useRecoilValue(tokenState)
