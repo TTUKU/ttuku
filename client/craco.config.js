@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   style: {
     postcss: {
@@ -7,7 +9,17 @@ module.exports = {
       ],
     },
   },
-  devServer: {
-    writeToDisk: true,
-  },
+  plugins: [
+    {
+      plugin: {
+        overrideWebpackConfig: ({
+                                  webpackConfig,
+                                }) => {
+          webpackConfig.output.path = path.join(__dirname, 'build');
+          return webpackConfig;
+        }
+      },
+      options: {}
+    }
+  ]
 }

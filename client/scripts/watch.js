@@ -1,7 +1,7 @@
 const craco = require('@craco/craco')
 const webpack = require('webpack')
 
-const config = craco.createWebpackDevConfig(require('../craco.config'))
+const config = craco.createWebpackProdConfig(require('../craco.config'))
 
 const compiler = webpack(config)
 
