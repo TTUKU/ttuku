@@ -44,6 +44,7 @@
     "autoprefixer": "^9",
     "cra-build-watch": "^3.4.0",
     "postcss": "^7",
+    "progress-bar-webpack-plugin": "^2.1.0",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
 }
