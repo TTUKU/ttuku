@@ -3,6 +3,7 @@ import { ServeStaticModule } from '@nestjs/serve-static'
 import { AuthModule } from './auth/auth.module'
 import * as path from 'path'
 import { globalModules } from './util'
+import { UserModule } from './user/user.module'
 
 @Module({
     imports: [
@@ -11,6 +12,7 @@ import { globalModules } from './util'
             rootPath: path.join(__dirname, '../client/build'),
         }),
         ...globalModules,
+        UserModule,
     ],
     controllers: [],
     providers: [],
