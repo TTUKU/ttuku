@@ -31,7 +31,7 @@ export class SocketIoAdapter extends AbstractWsAdapter {
 
     public createIOServer(port: number, options?: any): any {
         if (this.httpServer && port === 0) {
-            const s = new Server(this.httpServer, {
+            return new Server(this.httpServer, {
                 cors: {
                     origin: this.corsOrigins,
                     methods: ['GET', 'POST'],
@@ -46,8 +46,6 @@ export class SocketIoAdapter extends AbstractWsAdapter {
                 // Allow 1MB of data per request.
                 maxHttpBufferSize: 1e6,
             })
-
-            return s
         }
         return new Server(port, options)
     }

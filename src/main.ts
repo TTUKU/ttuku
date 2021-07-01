@@ -1,5 +1,5 @@
-import { Logger } from './logger'
 import 'dotenv/config'
+import { Logger } from './logger'
 import { NestFactory } from '@nestjs/core'
 import { SocketIoAdapter } from './socket-io.adapter'
 import { ClusterService } from './cluster.service'
