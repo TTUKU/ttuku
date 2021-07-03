@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import { Button } from '@material-ui/core'
 
 type Props = {
     text: string
@@ -7,17 +7,18 @@ type Props = {
     color: string
 }
 
-const Container = styled.a<{ color: string }>`
-    border-color: ${({ color }) => color};
-    color: ${({ color }) => color};
-    min-width: 200px;
-`
-
-const LoginMethodButton: React.FC<Props> = ({ color, text }) => {
+const LoginMethodButton: React.FC<Props> = ({ color, text, provider }) => {
     return (
-        <Container className="p-2 rounded border" color={color}>
+        <Button
+            style={{
+                minWidth: 300,
+                color: '#fff',
+                background: color,
+            }}
+            href={`/api/auth/${provider}`}
+        >
             {text}
-        </Container>
+        </Button>
     )
 }
 
