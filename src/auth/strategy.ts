@@ -1,11 +1,13 @@
 import { PassportStrategy } from '@nestjs/passport'
 import { Strategy as DiscordStrategy } from 'passport-discord'
+import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt'
 import { Injectable } from '@nestjs/common'
 import { UserService } from '../user/user.service'
+import { AuthService } from './auth.service'
 
 @Injectable()
 export class Discord extends PassportStrategy(DiscordStrategy) {
-    constructor(private userService: UserService) {
+    constructor(private auth: AuthService) {
         super({
             clientID: process.env.DISCORD_CLIENT_ID,
             clientSecret: process.env.DISCORD_CLIENT_SECRET,
@@ -15,10 +17,25 @@ export class Discord extends PassportStrategy(DiscordStrategy) {
     }
 
     async validate(accessToken: string, refreshToken: string, profile: any) {
-        return this.userService.validate({
+        return this.auth.validate({
             id: profile.id,
             nick: profile.username,
             provider: profile.provider,
         })
+    }
+}
+
+@Injectable()
+export class JWT extends PassportStrategy(JwtStrategy) {
+    constructor(private user: UserService) {
+        super({
+            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+            ignoreExpiration: false,
+            secretOrKey: process.env.JWT_SECRET,
+        })
+    }
+
+    validate(data: any) {
+        return this.user.fromID(data.id)
     }
 }

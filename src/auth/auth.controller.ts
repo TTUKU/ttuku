@@ -12,7 +12,7 @@ export class AuthController {
     @Redirect()
     async discord(@Req() req: Request) {
         return {
-            url: '/#/callback?token=' + (await this.callback(req)),
+            url: '/callback?token=' + (await this.callback(req)),
         }
     }
 

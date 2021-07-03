@@ -15,8 +15,13 @@ const Callback = () => {
             const token = query.get('token')
             if (!token) return fail()
             try {
-                const { data: user } = await axios.get('/api/users/@me')
-                console.log(user)
+                await axios.get('/api/users/@me', {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                })
+                localStorage.token = token
+                window.location.href = '/'
             } catch {
                 return fail()
             }
