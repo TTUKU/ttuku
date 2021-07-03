@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Logo from '../../assets/img/logo.png'
-import { Link, useHistory } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
-import { userState } from '../../state'
+import { useHistory } from 'react-router-dom'
+import UserMenu from './UserMenu'
 
 const Container = styled.div`
     background: #ffffff;
@@ -24,26 +23,17 @@ const Container = styled.div`
 
 const Header = () => {
     const router = useHistory()
-    const user = useRecoilValue(userState)
 
     return (
-        <>
-            <Container className="border-b">
-                <img
-                    className="logo"
-                    src={Logo}
-                    alt="Logo"
-                    onClick={() => router.push('/')}
-                />
-                <div>
-                    {user === null ? null : user === false ? (
-                        <Link to="/login">로그인</Link>
-                    ) : (
-                        '로그아웃'
-                    )}
-                </div>
-            </Container>
-        </>
+        <Container className="border-b select-none">
+            <img
+                className="logo"
+                src={Logo}
+                alt="Logo"
+                onClick={() => router.push('/')}
+            />
+            <UserMenu />
+        </Container>
     )
 }
 
