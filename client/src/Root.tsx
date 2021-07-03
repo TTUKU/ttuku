@@ -20,7 +20,7 @@ const Root = () => {
                 setUser(false)
             }
         })()
-    }, [token, user, setUser])
+    }, [token])
 
     return (
         <BrowserRouter>

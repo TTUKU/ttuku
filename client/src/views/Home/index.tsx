@@ -1,7 +1,8 @@
 import React from 'react'
+import Layout from '../../components/Layout'
 
 const Home = () => {
-    return <div className="container mx-auto gap-4 select-none">와아아아</div>
+    return <Layout>와아</Layout>
 }
 
 export default Home

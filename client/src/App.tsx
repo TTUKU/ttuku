@@ -7,11 +7,11 @@ import Callback from './views/Callback'
 
 const App = () => {
     return (
-        <Layout>
+        <>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/callback" component={Callback} />
-        </Layout>
+        </>
     )
 }
 
