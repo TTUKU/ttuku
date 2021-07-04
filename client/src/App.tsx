@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Home from './views/Home'
 import LoginPage from './views/Login'
 import Callback from './views/Callback'
@@ -8,6 +8,7 @@ import { socket } from './utils'
 import { stats, userState } from './state'
 import { useSetRecoilState } from 'recoil'
 import { User } from './typings'
+import NotFound from './views/NotFound'
 
 const App = () => {
     const [connected, setConnected] = React.useState(false)
@@ -43,9 +44,12 @@ const App = () => {
                     <CircularProgress style={{ margin: 15 }} />
                 )}
             </Dialog>
-            <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/callback" component={Callback} />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/login" component={LoginPage} />
+                <Route exact path="/callback" component={Callback} />
+                <Route component={NotFound} />
+            </Switch>
         </>
     )
 }
