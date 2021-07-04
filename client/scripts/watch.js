@@ -4,7 +4,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin')
 
 console.log('설정 불러오는중...')
 
-const config = craco.createWebpackProdConfig(require('../craco.config'))
+const config = craco.createWebpackDevConfig(require('../craco.config'))
 
 config.plugins.push(
     new ProgressBarPlugin({

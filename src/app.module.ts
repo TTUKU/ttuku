@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { AuthModule } from './auth/auth.module'
 import * as path from 'path'
-import { globalModules } from './util'
 import { UserModule } from './user/user.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
+import { AppGateway } from './app.gateway';
 
 @Module({
     imports: [
@@ -12,7 +12,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
         ServeStaticModule.forRoot({
             rootPath: path.join(__dirname, '../client/build'),
         }),
-        ...globalModules,
         UserModule,
         TypeOrmModule.forRoot({
             type: 'postgres',
@@ -26,6 +25,6 @@ import { TypeOrmModule } from '@nestjs/typeorm'
         }),
     ],
     controllers: [],
-    providers: [],
+    providers: [AppGateway],
 })
 export class AppModule {}
