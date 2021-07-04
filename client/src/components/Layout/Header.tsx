@@ -21,6 +21,7 @@ const Header = () => {
                     onClick={() => router.push('/')}
                     style={{
                         maxWidth: 50,
+                        cursor: 'pointer',
                     }}
                 />
                 <div className="flex-grow" />
