@@ -9,6 +9,7 @@ type UserAuthData = {
     id: string
     provider: string
     nick: string
+    email: string
 }
 
 @Injectable()
@@ -35,8 +36,9 @@ export class AuthService {
             user.provider = data.provider
             user.oidcID = data.id
             user.nick = data.nick
-            await this.userRepo.save(user)
         }
+        user.email = user.email || data.email
+        await this.userRepo.save(user)
         return user
     }
 }

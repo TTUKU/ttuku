@@ -2,7 +2,14 @@ import React from 'react'
 import { useRecoilState } from 'recoil'
 import { tokenState, userState } from '../../state'
 import { Link } from 'react-router-dom'
-import { Menu, MenuItem } from '@material-ui/core'
+import {
+    Avatar,
+    Icon,
+    IconButton,
+    ListItemIcon,
+    Menu,
+    MenuItem,
+} from '@material-ui/core'
 
 const UserMenu = () => {
     const [user] = useRecoilState(userState)
@@ -19,7 +26,12 @@ const UserMenu = () => {
                 className="cursor-pointer"
                 onClick={(e) => setAnchorEl(e.currentTarget)}
             >
-                {user.nick}
+                <IconButton
+                    size="small"
+                    onClick={(e) => setAnchorEl(e.currentTarget)}
+                >
+                    <Avatar src={user.avatar}>{user.nick}</Avatar>
+                </IconButton>
             </div>
             <Menu
                 anchorEl={anchorEl}
@@ -60,6 +72,9 @@ const UserMenu = () => {
                         setToken(null)
                     }}
                 >
+                    <ListItemIcon>
+                        <Icon>lock-open</Icon>
+                    </ListItemIcon>
                     로그아웃
                 </MenuItem>
             </Menu>

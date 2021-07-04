@@ -12,7 +12,7 @@ export class Discord extends PassportStrategy(DiscordStrategy) {
             clientID: process.env.DISCORD_CLIENT_ID,
             clientSecret: process.env.DISCORD_CLIENT_SECRET,
             callbackURL: process.env.DISCORD_CALLBACK,
-            scope: 'identify',
+            scope: 'identify email',
         })
     }
 
@@ -21,6 +21,7 @@ export class Discord extends PassportStrategy(DiscordStrategy) {
             id: profile.id,
             nick: profile.username,
             provider: profile.provider,
+            email: profile.email,
         })
     }
 }
