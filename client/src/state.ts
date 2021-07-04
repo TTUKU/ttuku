@@ -10,3 +10,10 @@ export const tokenState = atom<string | null>({
     default: localStorage.token || null,
     key: 'token',
 })
+
+export const stats = {
+    playerCount: atom<number>({
+        default: 1,
+        key: 'stats.playerCount',
+    }),
+}

@@ -3,15 +3,21 @@ import { Route } from 'react-router-dom'
 import Home from './views/Home'
 import LoginPage from './views/Login'
 import Callback from './views/Callback'
-import { CircularProgress, Dialog, DialogContent } from '@material-ui/core'
+import { CircularProgress, Dialog } from '@material-ui/core'
 import { socket } from './utils'
+import { stats } from './state'
+import { useRecoilState } from 'recoil'
 
 const App = () => {
     const [connected, setConnected] = React.useState(false)
+    const [, setPlayerCount] = useRecoilState(stats.playerCount)
 
     useEffect(() => {
         socket.once('connect', () => {
             setConnected(true)
+        })
+        socket.on('playerCount', (count: number) => {
+            setPlayerCount(count)
         })
         socket.connect()
     }, [])
