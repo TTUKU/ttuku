@@ -13,7 +13,7 @@ export const tokenState = atom<string | null>({
 
 export const stats = {
     playerCount: atom<number>({
-        default: 1,
+        default: 0,
         key: 'stats.playerCount',
     }),
 }

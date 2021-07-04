@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilState } from 'recoil'
 import { tokenState, userState } from '../../state'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import {
     Avatar,
     Icon,
@@ -17,6 +17,7 @@ const UserMenu = () => {
     const [anchorEl, setAnchorEl] = React.useState<any>(null)
     const open = !!anchorEl && !!user
     const close = () => setAnchorEl(null)
+    const history = useHistory()
 
     return user === null ? null : user === false ? (
         <Link to="/login">로그인</Link>
@@ -72,6 +73,7 @@ const UserMenu = () => {
                         setUser(false)
                         delete localStorage.token
                         socket.emit('logout')
+                        history.push('/')
                     }}
                 >
                     <ListItemIcon>

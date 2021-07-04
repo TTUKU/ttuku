@@ -48,10 +48,10 @@ export class AppGateway {
                     user,
                 })
             }
-            this.playerCount()
         } catch {
             socket.emit('unauthenticated')
         }
+        this.playerCount()
     }
 
     handleDisconnect() {
