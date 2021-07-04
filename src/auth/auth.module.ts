@@ -2,13 +2,12 @@ import { Module } from '@nestjs/common'
 import { AuthService } from './auth.service'
 import { AuthController } from './auth.controller'
 import { Discord, JWT } from './strategy'
-import { masterOnly } from '../util'
 import { UserModule } from '../user/user.module'
 import { JwtModule } from '@nestjs/jwt'
 
 @Module({
-    providers: [AuthService, ...masterOnly(Discord), JWT],
-    controllers: [...masterOnly(AuthController)],
+    providers: [AuthService, Discord, JWT],
+    controllers: [AuthController],
     imports: [
         UserModule,
         JwtModule.register({
