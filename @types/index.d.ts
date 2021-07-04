@@ -6,3 +6,9 @@ declare global {
         interface User extends UserModel {}
     }
 }
+
+declare module 'socket.io' {
+    interface Socket {
+        user: UserModel
+    }
+}

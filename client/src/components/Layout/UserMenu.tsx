@@ -10,11 +10,11 @@ import {
     Menu,
     MenuItem,
 } from '@material-ui/core'
+import { socket } from '../../utils'
 
 const UserMenu = () => {
-    const [user] = useRecoilState(userState)
+    const [user, setUser] = useRecoilState(userState)
     const [anchorEl, setAnchorEl] = React.useState<any>(null)
-    const [, setToken] = useRecoilState(tokenState)
     const open = !!anchorEl && !!user
     const close = () => setAnchorEl(null)
 
@@ -69,7 +69,9 @@ const UserMenu = () => {
             >
                 <MenuItem
                     onClick={() => {
-                        setToken(null)
+                        setUser(false)
+                        delete localStorage.token
+                        socket.emit('logout')
                     }}
                 >
                     <ListItemIcon>
