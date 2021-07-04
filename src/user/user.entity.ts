@@ -18,9 +18,8 @@ export class User {
     @Column()
     email: string
 
-    get avatar() {
-        return gravatar.url(this.email)
-    }
+    @Column({ default: '' })
+    avatar: string
 
     toJSON() {
         const { id, nick, email, oidcID, avatar } = this
@@ -29,7 +28,7 @@ export class User {
             nick,
             email,
             oidcID,
-            avatar,
+            avatar: avatar || gravatar.url(this.email),
         }
     }
 }

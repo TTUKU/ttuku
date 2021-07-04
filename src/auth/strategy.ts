@@ -22,6 +22,7 @@ export class Discord extends PassportStrategy(DiscordStrategy) {
             nick: profile.username,
             provider: profile.provider,
             email: profile.email,
+            avatar: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}`,
         })
     }
 }
