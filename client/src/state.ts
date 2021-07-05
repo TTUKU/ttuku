@@ -1,5 +1,5 @@
 import { atom } from 'recoil'
-import type { User } from './typings'
+import type { Room, User } from './typings'
 
 export const userState = atom<User | null | false>({
     default: null,
@@ -17,3 +17,8 @@ export const stats = {
         key: 'stats.playerCount',
     }),
 }
+
+export const rooms = atom<Room[]>({
+    key: 'rooms',
+    default: [],
+})

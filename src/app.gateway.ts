@@ -6,10 +6,11 @@ import {
 } from '@nestjs/websockets'
 import { Server, Socket } from 'socket.io'
 import { AuthService } from './auth/auth.service'
+import { RoomService } from './room/room.service'
 
 @WebSocketGateway()
 export class AppGateway {
-    constructor(private auth: AuthService) {}
+    constructor(private auth: AuthService, private room: RoomService) {}
 
     @WebSocketServer()
     server: Server
@@ -46,6 +47,7 @@ export class AppGateway {
                 socket.user = user
                 socket.emit('init', {
                     user,
+                    room: this.room.rooms,
                 })
             }
         } catch {

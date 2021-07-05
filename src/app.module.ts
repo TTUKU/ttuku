@@ -4,7 +4,9 @@ import { AuthModule } from './auth/auth.module'
 import * as path from 'path'
 import { UserModule } from './user/user.module'
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { AppGateway } from './app.gateway';
+import { AppGateway } from './app.gateway'
+import { RoomModule } from './room/room.module'
+import { RoomGateway } from './room/room.gateway'
 
 @Module({
     imports: [
@@ -23,6 +25,7 @@ import { AppGateway } from './app.gateway';
             synchronize: true,
             autoLoadEntities: true,
         }),
+        RoomModule,
     ],
     controllers: [],
     providers: [AppGateway],

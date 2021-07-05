@@ -4,3 +4,8 @@ export interface User {
     email: string
     avatar: string
 }
+
+export interface Room {
+    id: number
+    name: string
+}
