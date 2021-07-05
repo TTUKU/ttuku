@@ -17,6 +17,7 @@ const App = () => {
     const [errorMsg, setErrorMsg] = React.useState('')
 
     useEffect(() => {
+        if (window.location.pathname === '/callback') return
         // socket.once('unauthenticated', () => {})
         socket.on('init', (data: { user: User }) => {
             setConnected(true)
@@ -45,10 +46,16 @@ const App = () => {
                 )}
             </Dialog>
             <Switch>
-                <Route exact path="/" component={Home} />
-                <Route exact path="/login" component={LoginPage} />
                 <Route exact path="/callback" component={Callback} />
-                <Route component={NotFound} />
+                {connected ? (
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/login" component={LoginPage} />
+                        <Route component={NotFound} />
+                    </Switch>
+                ) : (
+                    <div className="container mx-auto">Loading....</div>
+                )}
             </Switch>
         </>
     )
