@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Home = () => {
-    return <>와아아</>
+    return <>와아</>
 }
 
 export default Home
