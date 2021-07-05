@@ -22,3 +22,8 @@ export const rooms = atom<Room[]>({
     key: 'rooms',
     default: [],
 })
+
+export const room = atom<Room | null>({
+    key: 'currentRoom',
+    default: null,
+})

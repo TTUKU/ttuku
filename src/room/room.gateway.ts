@@ -17,6 +17,13 @@ export class RoomGateway {
 
     constructor(private room: RoomService) {}
 
+    updateRoomList() {
+        this.server.sockets.emit(
+            'updateRoomList',
+            this.room.rooms.map((x) => x.toJSON()),
+        )
+    }
+
     @SubscribeMessage('createRoom')
     createRoom(@ConnectedSocket() socket: Socket, @MessageBody() body: any) {
         const room = Array.from(socket.rooms).find((x) => x !== socket.id)
@@ -31,6 +38,8 @@ export class RoomGateway {
         this.room.rooms.push(
             new Room(randomUUID(), body.name, socket, body.playerCount),
         )
+
+        this.updateRoomList()
     }
 
     handleDisconnect(@ConnectedSocket() socket: Socket) {
@@ -38,5 +47,7 @@ export class RoomGateway {
             this.room.rooms,
             this.room.rooms.find((x) => x.owner === socket),
         )
+
+        this.updateRoomList()
     }
 }

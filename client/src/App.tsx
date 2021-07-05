@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom'
 import Home from './views/Home'
 import Callback from './views/Callback'
 import { Backdrop, CircularProgress } from '@material-ui/core'
 import { socket } from './utils'
-import { stats, userState } from './state'
+import { room, rooms, stats, userState } from './state'
 import { useSetRecoilState } from 'recoil'
 import { User } from './typings'
 import NotFound from './views/NotFound'
 import Layout from './components/Layout'
+import Room from './views/Room'
 
 const App = () => {
     const [connected, setConnected] = React.useState(false)
@@ -16,6 +17,9 @@ const App = () => {
     const setUser = useSetRecoilState(userState)
     const [errorMsg, setErrorMsg] = React.useState('')
     const location = useLocation()
+    const setCurrentRoom = useSetRecoilState(room)
+    const history = useHistory()
+    const setRooms = useSetRecoilState(rooms)
 
     let LayoutComponent
 
@@ -48,6 +52,13 @@ const App = () => {
             setConnected(true)
             setUser(false)
         })
+        socket.on('joinRoom', (data) => {
+            setCurrentRoom(data)
+            history.push('/room')
+        })
+        socket.on('updateRoomList', (data) => {
+            setRooms(data)
+        })
         setTimeout(() => socket.connect(), 1000)
     }, [])
 
@@ -65,8 +76,9 @@ const App = () => {
             </Backdrop>
             {connected ? (
                 <Switch>
-                    <Route exact path="/callback" component={Callback} />
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/room" component={Room} />
+                    <Route exact path="/callback" component={Callback} />
                     <Route component={NotFound} />
                 </Switch>
             ) : (

@@ -15,9 +15,12 @@ export class Room {
     members: Socket[] = []
 
     toJSON() {
-        const { id } = this
+        const { id, owner, maxPlayers, name } = this
         return {
             id,
+            owner: owner.id,
+            maxPlayers,
+            name,
         }
     }
 }

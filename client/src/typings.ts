@@ -6,6 +6,8 @@ export interface User {
 }
 
 export interface Room {
-    id: number
+    id: string
     name: string
+    maxPlayers: number
+    owner: string
 }
