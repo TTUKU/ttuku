@@ -17,7 +17,10 @@ const App = () => {
     const [errorMsg, setErrorMsg] = React.useState('')
 
     useEffect(() => {
-        if (window.location.pathname === '/callback') return
+        if (window.location.pathname === '/callback') {
+            setConnected(true)
+            return
+        }
         // socket.once('unauthenticated', () => {})
         socket.on('init', (data: { user: User }) => {
             setConnected(true)
@@ -45,18 +48,16 @@ const App = () => {
                     <CircularProgress style={{ margin: 15 }} />
                 )}
             </Dialog>
-            <Switch>
-                <Route exact path="/callback" component={Callback} />
-                {connected ? (
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/login" component={LoginPage} />
-                        <Route component={NotFound} />
-                    </Switch>
-                ) : (
-                    <div className="container mx-auto">Loading....</div>
-                )}
-            </Switch>
+            {connected ? (
+                <Switch>
+                    <Route exact path="/callback" component={Callback} />
+                    <Route exact path="/" component={Home} />
+                    <Route exact path="/login" component={LoginPage} />
+                    <Route component={NotFound} />
+                </Switch>
+            ) : (
+                <div className="container mx-auto">Loading....</div>
+            )}
         </>
     )
 }
