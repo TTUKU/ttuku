@@ -53,7 +53,10 @@ const App = () => {
 
     return (
         <LayoutComponent>
-            <Backdrop open={!connected || !socket.connected || !!errorMsg}>
+            <Backdrop
+                open={!connected || !socket.connected || !!errorMsg}
+                style={{ zIndex: 999999 }}
+            >
                 {errorMsg ? (
                     <div style={{ margin: 15 }}>{errorMsg}</div>
                 ) : (

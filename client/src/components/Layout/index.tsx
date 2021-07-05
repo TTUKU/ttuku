@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import RoomList from './RoomList'
 
 const Layout: React.FC = ({ children }) => {
     return (
@@ -7,17 +8,14 @@ const Layout: React.FC = ({ children }) => {
             <div className="col-span-2 flex flex-col gap-4 flex-grow">
                 <Header />
                 <div
-                    className="p-4 bg-white flex-grow"
-                    style={{ overflowY: 'scroll', height: 0 }}
+                    className="p-4 bg-white flex-grow h-0"
+                    style={{ overflowY: 'scroll' }}
                 >
                     {children}
                 </div>
             </div>
-            <div
-                className="h-full p-4 bg-white flex-grow"
-                style={{ overflowY: 'scroll' }}
-            >
-                방 목록
+            <div className="h-full bg-white flex-grow relative">
+                <RoomList />
             </div>
         </div>
     )

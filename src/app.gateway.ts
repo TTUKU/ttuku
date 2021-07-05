@@ -39,7 +39,7 @@ export class AppGateway {
             } else {
                 if (
                     Array.from(this.server.sockets.sockets.values()).find(
-                        (x) => !!x.user,
+                        (x) => x.user?.id === user.id,
                     )
                 ) {
                     return socket.emit('alreadyConnected')
