@@ -11,6 +11,7 @@ import {
     MenuItem,
 } from '@material-ui/core'
 import { socket } from '../../utils'
+import LoginPage from '../Login'
 
 const UserMenu = () => {
     const [user, setUser] = useRecoilState(userState)
@@ -18,9 +19,15 @@ const UserMenu = () => {
     const open = !!anchorEl && !!user
     const close = () => setAnchorEl(null)
     const history = useHistory()
+    const [loginModal, setLoginModal] = React.useState(false)
 
     return user === null ? null : user === false ? (
-        <Link to="/login">로그인</Link>
+        <>
+            <LoginPage open={loginModal} onClose={() => setLoginModal(false)} />
+            <a className="cursor-pointer" onClick={() => setLoginModal(true)}>
+                로그인
+            </a>
+        </>
     ) : (
         <>
             <div

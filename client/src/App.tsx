@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { Route, Switch, useLocation } from 'react-router-dom'
 import Home from './views/Home'
-import LoginPage from './views/Login'
 import Callback from './views/Callback'
 import { Backdrop, CircularProgress } from '@material-ui/core'
 import { socket } from './utils'
@@ -61,7 +60,6 @@ const App = () => {
                 <Switch>
                     <Route exact path="/callback" component={Callback} />
                     <Route exact path="/" component={Home} />
-                    <Route exact path="/login" component={LoginPage} />
                     <Route component={NotFound} />
                 </Switch>
             ) : (
