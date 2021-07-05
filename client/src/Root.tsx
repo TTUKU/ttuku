@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 // import { useRecoilValue } from 'recoil'
 // import { tokenState } from './state'
 
@@ -20,10 +21,22 @@ const Root = () => {
     //     })()
     // }, [token])
 
+    const theme = createTheme({
+        palette: {
+            background: {
+                default: '#000',
+                paper: '#fff',
+            },
+        },
+    })
+
     return (
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ThemeProvider>
     )
 }
 

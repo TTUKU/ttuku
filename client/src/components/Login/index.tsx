@@ -9,7 +9,10 @@ const LoginPage: React.FC<{ open: boolean; onClose: () => void }> = ({
     return (
         <Backdrop open={open}>
             <div className="flex justify-center">
-                <Paper className="p-4 rounded flex flex-col gap-2">
+                <Paper
+                    className="p-4 rounded flex flex-col gap-2"
+                    // style={{ background: 'rgb(40,40,47)', color: '#fff' }}
+                >
                     <div className="font-gugi text-3xl text-center">로그인</div>
                     <LoginMethodButton
                         color="#5865F2"

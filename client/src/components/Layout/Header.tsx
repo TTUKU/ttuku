@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <AppBar
             elevation={0}
-            color="transparent"
+            color="inherit"
             className="border"
             position="relative"
         >
