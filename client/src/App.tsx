@@ -20,8 +20,12 @@ const App = () => {
     let LayoutComponent
 
     switch (location.pathname) {
+        case '/callback':
+            LayoutComponent = 'div'
+            break
         default:
             LayoutComponent = Layout
+            break
     }
 
     useEffect(() => {
