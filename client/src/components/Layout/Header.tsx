@@ -11,8 +11,8 @@ const Header = () => {
         <AppBar
             elevation={0}
             color="transparent"
-            className="border-b top-0"
-            position="sticky"
+            className="border"
+            position="relative"
         >
             <Toolbar>
                 <img
