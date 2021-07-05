@@ -1,20 +1,29 @@
 import React, { useEffect } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 import Home from './views/Home'
 import LoginPage from './views/Login'
 import Callback from './views/Callback'
-import { CircularProgress, Dialog } from '@material-ui/core'
+import { Backdrop, CircularProgress } from '@material-ui/core'
 import { socket } from './utils'
 import { stats, userState } from './state'
 import { useSetRecoilState } from 'recoil'
 import { User } from './typings'
 import NotFound from './views/NotFound'
+import Layout from './components/Layout'
 
 const App = () => {
     const [connected, setConnected] = React.useState(false)
     const setPlayerCount = useSetRecoilState(stats.playerCount)
     const setUser = useSetRecoilState(userState)
     const [errorMsg, setErrorMsg] = React.useState('')
+    const location = useLocation()
+
+    let LayoutComponent
+
+    switch (location.pathname) {
+        default:
+            LayoutComponent = Layout
+    }
 
     useEffect(() => {
         if (window.location.pathname === '/callback') {
@@ -36,18 +45,18 @@ const App = () => {
             setConnected(true)
             setUser(false)
         })
-        socket.connect()
+        setTimeout(() => socket.connect(), 1000)
     }, [])
 
     return (
-        <>
-            <Dialog open={!connected || !socket.connected || !!errorMsg}>
+        <LayoutComponent>
+            <Backdrop open={!connected || !socket.connected || !!errorMsg}>
                 {errorMsg ? (
                     <div style={{ margin: 15 }}>{errorMsg}</div>
                 ) : (
-                    <CircularProgress style={{ margin: 15 }} />
+                    <CircularProgress style={{ color: '#fff' }} />
                 )}
-            </Dialog>
+            </Backdrop>
             {connected ? (
                 <Switch>
                     <Route exact path="/callback" component={Callback} />
@@ -58,7 +67,7 @@ const App = () => {
             ) : (
                 <div className="container mx-auto">Loading....</div>
             )}
-        </>
+        </LayoutComponent>
     )
 }
 
