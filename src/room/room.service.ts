@@ -10,6 +10,10 @@ export class Room {
     ) {
         owner.join('play-' + id)
         owner.emit('joinRoom', this.toJSON())
+        owner.emit('alert', {
+            type: 'success',
+            message: '방을 만들었어요!',
+        })
     }
 
     members: Socket[] = []
@@ -21,6 +25,7 @@ export class Room {
             owner: owner.id,
             maxPlayers,
             name,
+            players: this.members.length + 1,
         }
     }
 }

@@ -5,11 +5,13 @@ import Callback from './views/Callback'
 import { Backdrop, CircularProgress } from '@material-ui/core'
 import { socket } from './utils'
 import { room, rooms, stats, userState } from './state'
-import { useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { User } from './typings'
 import NotFound from './views/NotFound'
 import Layout from './components/Layout'
 import Room from './views/Room'
+import { useSnackbar } from 'notistack'
+import { Room as RoomType } from './typings'
 
 const App = () => {
     const [connected, setConnected] = React.useState(false)
@@ -17,9 +19,10 @@ const App = () => {
     const setUser = useSetRecoilState(userState)
     const [errorMsg, setErrorMsg] = React.useState('')
     const location = useLocation()
-    const setCurrentRoom = useSetRecoilState(room)
+    const [currentRoom, setCurrentRoom] = useRecoilState(room)
     const history = useHistory()
     const setRooms = useSetRecoilState(rooms)
+    const { enqueueSnackbar } = useSnackbar()
 
     let LayoutComponent
 
@@ -56,8 +59,17 @@ const App = () => {
             setCurrentRoom(data)
             history.push('/room')
         })
-        socket.on('updateRoomList', (data) => {
+        socket.on('updateRoomList', (data: RoomType[]) => {
             setRooms(data)
+            setCurrentRoom(
+                data.find((x: any) => x.id === currentRoom?.id) || null,
+            )
+        })
+
+        socket.on('alert', (data) => {
+            enqueueSnackbar(data.message, {
+                variant: data.type,
+            })
         })
         setTimeout(() => socket.connect(), 1000)
     }, [])

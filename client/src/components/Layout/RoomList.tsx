@@ -12,6 +12,8 @@ import {
 import clsx from 'clsx'
 import RoomListContent from './RoomListContent'
 import RoomCreate from './RoomCreate'
+import { useRecoilValue } from 'recoil'
+import { room } from '../../state'
 
 const StyledFab = styled(Fab)(({ theme }) => ({
     position: 'absolute',
@@ -21,6 +23,7 @@ const StyledFab = styled(Fab)(({ theme }) => ({
 
 const RoomList = () => {
     const [roomCreate, setRoomCreate] = React.useState(false)
+    const currentRoom = useRecoilValue(room)
 
     return (
         <div className="flex flex-col h-full">
@@ -40,22 +43,24 @@ const RoomList = () => {
             ) : (
                 <RoomListContent />
             )}
-            <StyledFab
-                color="primary"
-                className={clsx({ active: roomCreate })}
-                onClick={() => setRoomCreate(!roomCreate)}
-            >
-                <Icon
-                    style={{
-                        transform: roomCreate
-                            ? 'rotate(45deg)'
-                            : 'rotate(0deg)',
-                        transition: 'transform .5s ease',
-                    }}
+            {!currentRoom && (
+                <StyledFab
+                    color="primary"
+                    className={clsx({ active: roomCreate })}
+                    onClick={() => setRoomCreate(!roomCreate)}
                 >
-                    add
-                </Icon>
-            </StyledFab>
+                    <Icon
+                        style={{
+                            transform: roomCreate
+                                ? 'rotate(45deg)'
+                                : 'rotate(0deg)',
+                            transition: 'transform .5s ease',
+                        }}
+                    >
+                        add
+                    </Icon>
+                </StyledFab>
+            )}
         </div>
     )
 }
