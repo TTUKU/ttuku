@@ -13,7 +13,8 @@ import clsx from 'clsx'
 import RoomListContent from './RoomListContent'
 import RoomCreate from './RoomCreate'
 import { useRecoilValue } from 'recoil'
-import { room } from '../../state'
+import { room, userState } from '../../state'
+import { socket } from '../../utils'
 
 const StyledFab = styled(Fab)(({ theme }) => ({
     position: 'absolute',
@@ -24,6 +25,7 @@ const StyledFab = styled(Fab)(({ theme }) => ({
 const RoomList = () => {
     const [roomCreate, setRoomCreate] = React.useState(false)
     const currentRoom = useRecoilValue(room)
+    const user = useRecoilValue(userState)
 
     return (
         <div className="flex flex-col h-full">
@@ -43,7 +45,7 @@ const RoomList = () => {
             ) : (
                 <RoomListContent />
             )}
-            {!currentRoom && (
+            {!currentRoom && user ? (
                 <StyledFab
                     color="primary"
                     className={clsx({ active: roomCreate })}
@@ -60,6 +62,15 @@ const RoomList = () => {
                         add
                     </Icon>
                 </StyledFab>
+            ) : (
+                currentRoom && (
+                    <StyledFab
+                        color="primary"
+                        onClick={() => socket.emit('leaveRoom')}
+                    >
+                        <Icon>logout</Icon>
+                    </StyledFab>
+                )
             )}
         </div>
     )

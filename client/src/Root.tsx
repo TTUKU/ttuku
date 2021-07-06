@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import { createMuiTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
-import { SnackbarProvider } from 'notistack'
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
+// import { SnackbarProvider } from 'notistack'
 // import { useRecoilValue } from 'recoil'
 // import { tokenState } from './state'
 
@@ -22,7 +22,7 @@ const Root = () => {
     //     })()
     // }, [token])
 
-    const theme = createMuiTheme({
+    const theme = createTheme({
         palette: {
             background: {
                 default: '#000',
@@ -32,14 +32,12 @@ const Root = () => {
     })
 
     return (
-        <SnackbarProvider>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-            </ThemeProvider>
-        </SnackbarProvider>
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </ThemeProvider>
     )
 }
 

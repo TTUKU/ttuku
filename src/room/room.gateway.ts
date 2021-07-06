@@ -36,17 +36,73 @@ export class RoomGateway {
         if (!body.name || !body.playerCount) return
 
         this.room.rooms.push(
-            new Room(randomUUID(), body.name, socket, body.playerCount),
+            new Room(
+                randomUUID(),
+                body.name,
+                socket,
+                body.playerCount,
+                this.room,
+                this,
+            ),
         )
 
         this.updateRoomList()
     }
 
+    @SubscribeMessage('leaveRoom')
+    leaveRoom(@ConnectedSocket() socket: Socket) {
+        let room = this.room.rooms.find((x) => x.owner === socket)
+        if (room) {
+            _.remove(this.room.rooms, room)
+            socket.leave('play-' + room.id)
+            socket.emit('leaveRoom')
+            room.members.forEach((value) => {
+                value.emit('leaveRoom')
+                value.emit('alert', {
+                    type: 'info',
+                    message: '방장이 방을 삭제했어요!',
+                })
+            })
+            return
+        } else {
+            room = this.room.rooms.find((x) => x.members.includes(socket))
+            if (room) {
+                room.removeMember(socket)
+            }
+        }
+        this.updateRoomList()
+    }
+
+    @SubscribeMessage('joinRoom')
+    joinRoom(@ConnectedSocket() socket: Socket, @MessageBody() body: any) {
+        const roomId = body?.room
+        if (!roomId) return
+        const room = this.room.rooms.find((x) => x.id === roomId)
+        if (!room) return
+        room.addMember(socket)
+        this.updateRoomList()
+    }
+
+    handleConnection() {
+        this.updateRoomList()
+    }
+
     handleDisconnect(@ConnectedSocket() socket: Socket) {
-        _.remove(
-            this.room.rooms,
-            this.room.rooms.find((x) => x.owner === socket),
-        )
+        console.log(this.room.rooms)
+
+        const ownerRoom = this.room.rooms.find((x) => x.owner === socket)
+
+        if (ownerRoom) {
+            _.remove(this.room.rooms, ownerRoom)
+        }
+
+        const room = this.room.rooms.find((x) => x.members.includes(socket))
+
+        console.log(this.room.rooms)
+
+        if (room) {
+            room.removeMember(socket)
+        }
 
         this.updateRoomList()
     }

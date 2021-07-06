@@ -10,4 +10,5 @@ export interface Room {
     name: string
     maxPlayers: number
     owner: string
+    players: number
 }
