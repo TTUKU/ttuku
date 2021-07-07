@@ -1,15 +1,8 @@
 import React from 'react'
 import { useRecoilState } from 'recoil'
-import { tokenState, userState } from '../../state'
-import { Link, useHistory } from 'react-router-dom'
-import {
-    Avatar,
-    Icon,
-    IconButton,
-    ListItemIcon,
-    Menu,
-    MenuItem,
-} from '@material-ui/core'
+import { userState } from '../../state'
+import { useHistory } from 'react-router-dom'
+import { Icon, ListItemIcon, Menu, MenuItem } from '@material-ui/core'
 import { socket } from '../../utils'
 import LoginPage from '../Login'
 
@@ -34,12 +27,12 @@ const UserMenu = () => {
                 className="cursor-pointer"
                 onClick={(e) => setAnchorEl(e.currentTarget)}
             >
-                <IconButton
-                    size="small"
+                <img
                     onClick={(e) => setAnchorEl(e.currentTarget)}
-                >
-                    <Avatar src={user.avatar}>{user.nick}</Avatar>
-                </IconButton>
+                    src={user.avatar}
+                    alt={user.nick}
+                    style={{ height: 70, borderRadius: '50%' }}
+                />
             </div>
             <Menu
                 anchorEl={anchorEl}
