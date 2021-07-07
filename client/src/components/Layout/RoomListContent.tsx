@@ -3,16 +3,15 @@ import {
     createTheme,
     Icon,
     InputBase,
-    List,
-    ListItem,
-    ListItemText,
+    styled,
     ThemeProvider,
 } from '@material-ui/core'
 import { useRecoilValue } from 'recoil'
-import { room, rooms } from '../../state'
+import { room } from '../../state'
 import { socket } from '../../utils'
 import { Room } from '../../typings'
 import { makeStyles } from '@material-ui/styles'
+import { grey, blueGrey } from '@material-ui/core/colors'
 
 const withStyles = makeStyles(() => ({
     searchBar: {
@@ -30,6 +29,21 @@ const withStyles = makeStyles(() => ({
         color: '#fff',
     },
 }))
+
+const RoomItem = styled('div')({
+    padding: '15px 25px',
+    background: grey['50'],
+    borderRadius: 15,
+    userSelect: 'none',
+    cursor: 'pointer',
+})
+
+const PlayerIcon = styled('span')({
+    width: 11,
+    height: 11,
+    display: 'inline-block',
+    borderRadius: '50%',
+})
 
 const RoomListContent = () => {
     // const roomList = useRecoilValue(rooms)
@@ -58,9 +72,15 @@ const RoomListContent = () => {
                         <Icon>filter_list</Icon>
                     </div>
                 </div>
-                <List
-                    style={{ overflowY: 'scroll', height: 0 }}
-                    className="flex-grow"
+                <div
+                    style={{
+                        overflowY: 'scroll',
+                        height: 0,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 10,
+                    }}
+                    className="flex-grow pr-2"
                 >
                     {(
                         new Array(100).fill({
@@ -71,23 +91,40 @@ const RoomListContent = () => {
                             maxPlayers: 8,
                         }) as Room[]
                     ).map((room, i) => (
-                        <ListItem
-                            button
+                        <RoomItem
                             key={i}
                             onClick={() => {
                                 socket.emit('joinRoom', {
                                     room: room.id,
                                 })
                             }}
-                            disabled={room.id === currentRoom?.id}
+                            // disabled={room.id === currentRoom?.id}
                         >
-                            <ListItemText
-                                primary={room.name}
-                                secondary={`끝말잇기 / ${room.players}/${room.maxPlayers} / 대기중`}
-                            />
-                        </ListItem>
+                            <div className="text-xl font-bold">{room.name}</div>
+                            <div className="flex justify-between">
+                                <div className="text-sm">
+                                    <span>한방금지</span>&nbsp;
+                                    <span className="font-bold">끝말잇기</span>
+                                </div>
+                                <div className="flex gap-1 items-end">
+                                    {Array(room.maxPlayers)
+                                        .fill(null)
+                                        .map((e, i) => (
+                                            <PlayerIcon
+                                                style={{
+                                                    backgroundColor:
+                                                        i >= room.players
+                                                            ? grey['500']
+                                                            : blueGrey['900'],
+                                                }}
+                                                key={i}
+                                            />
+                                        ))}
+                                </div>
+                            </div>
+                        </RoomItem>
                     ))}
-                </List>
+                </div>
             </div>
         </ThemeProvider>
     )

@@ -20,7 +20,7 @@ const App = () => {
     const setUser = useSetRecoilState(userState)
     const [errorMsg, setErrorMsg] = React.useState('')
     const location = useLocation()
-    const [currentRoom, setCurrentRoom] = useRecoilState(room)
+    const [, setCurrentRoom] = useRecoilState(room)
     const history = useHistory()
     const setRooms = useSetRecoilState(rooms)
     const [alertOpen, setAlertOpen] = React.useState(false)
