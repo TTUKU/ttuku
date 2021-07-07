@@ -88,8 +88,6 @@ export class RoomGateway {
     }
 
     handleDisconnect(@ConnectedSocket() socket: Socket) {
-        console.log(this.room.rooms)
-
         const ownerRoom = this.room.rooms.find((x) => x.owner === socket)
 
         if (ownerRoom) {
@@ -97,8 +95,6 @@ export class RoomGateway {
         }
 
         const room = this.room.rooms.find((x) => x.members.includes(socket))
-
-        console.log(this.room.rooms)
 
         if (room) {
             room.removeMember(socket)

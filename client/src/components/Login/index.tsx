@@ -7,7 +7,12 @@ const LoginPage: React.FC<{ open: boolean; onClose: () => void }> = ({
     onClose,
 }) => {
     return (
-        <Backdrop open={open}>
+        <Backdrop
+            open={open}
+            style={{
+                zIndex: 99999,
+            }}
+        >
             <div className="flex justify-center">
                 <Paper
                     className="p-4 rounded flex flex-col gap-2"

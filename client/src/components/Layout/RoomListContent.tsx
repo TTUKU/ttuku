@@ -9,25 +9,30 @@ const RoomListContent = () => {
     const currentRoom = useRecoilValue(room)
 
     return (
-        <List style={{ overflowY: 'scroll', height: 0 }} className="flex-grow">
-            {roomList.map((room, i) => (
-                <ListItem
-                    button
-                    key={i}
-                    onClick={() => {
-                        socket.emit('joinRoom', {
-                            room: room.id,
-                        })
-                    }}
-                    disabled={room.id === currentRoom?.id}
-                >
-                    <ListItemText
-                        primary={room.name}
-                        secondary={`끝말잇기 / ${room.players}/${room.maxPlayers} / 대기중`}
-                    />
-                </ListItem>
-            ))}
-        </List>
+        <div className="h-full flex flex-col">
+            <List
+                style={{ overflowY: 'scroll', height: 0 }}
+                className="flex-grow"
+            >
+                {roomList.map((room, i) => (
+                    <ListItem
+                        button
+                        key={i}
+                        onClick={() => {
+                            socket.emit('joinRoom', {
+                                room: room.id,
+                            })
+                        }}
+                        disabled={room.id === currentRoom?.id}
+                    >
+                        <ListItemText
+                            primary={room.name}
+                            secondary={`끝말잇기 / ${room.players}/${room.maxPlayers} / 대기중`}
+                        />
+                    </ListItem>
+                ))}
+            </List>
+        </div>
     )
 }
 
