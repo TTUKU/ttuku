@@ -6,18 +6,17 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-
 ::-webkit-scrollbar {
-  width: 5px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #424242;
+    background: #424242;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #BDBDBD;
+    background: #bdbdbd;
 }
