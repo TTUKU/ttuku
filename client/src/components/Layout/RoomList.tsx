@@ -32,8 +32,8 @@ const RoomList = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <div className="flex flex-col h-full gap-4">
-                <Typography variant="h4" fontWeight={900}>
+            <div className="flex flex-col h-full gap-4 dark">
+                <Typography variant="h4" fontWeight={700}>
                     {roomCreate ? '방 만들기' : '놀이방 목록'}
                 </Typography>
                 <div className="flex-grow">

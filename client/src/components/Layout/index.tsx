@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import RoomList from './RoomList'
+import { grey } from '@material-ui/core/colors'
 
 const Layout: React.FC = ({ children }) => {
     return (
@@ -8,10 +9,17 @@ const Layout: React.FC = ({ children }) => {
             <div className="col-span-2 flex flex-col flex-grow px-8 pt-14 pb-8">
                 <Header />
                 <div
-                    className="p-4 bg-white flex-grow h-0"
-                    style={{ overflowY: 'scroll' }}
+                    className="p-8 flex-grow flex flex-col mt-4"
+                    style={{
+                        backgroundColor: grey['50'],
+                    }}
                 >
-                    {children}
+                    <div
+                        className="h-0 flex-grow"
+                        style={{ overflowY: 'scroll' }}
+                    >
+                        {children}
+                    </div>
                 </div>
             </div>
             <div

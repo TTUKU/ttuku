@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import { CssBaseline } from '@material-ui/core'
+import { createTheme, CssBaseline, ThemeProvider } from '@material-ui/core'
 // import { SnackbarProvider } from 'notistack'
 // import { useRecoilValue } from 'recoil'
 // import { tokenState } from './state'
@@ -22,13 +22,19 @@ const Root = () => {
     //     })()
     // }, [token])
 
+    const theme = createTheme({
+        typography: {
+            fontFamily: "'Noto Sans KR', sans-serif",
+        },
+    })
+
     return (
-        <>
+        <ThemeProvider theme={theme}>
             <CssBaseline />
             <BrowserRouter>
                 <App />
             </BrowserRouter>
-        </>
+        </ThemeProvider>
     )
 }
 

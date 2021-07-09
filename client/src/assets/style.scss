@@ -5,18 +5,27 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    font-family: 'Noto Sans KR', sans-serif;
+.dark ::-webkit-scrollbar {
+    width: 5px;
 }
+
+.dark ::-webkit-scrollbar-track {
+    background: #424242;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #bdbdbd;
+}
+
 
 ::-webkit-scrollbar {
     width: 5px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #424242;
+    background: #bdbdbd;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bdbdbd;
+    background: #424242;
 }
