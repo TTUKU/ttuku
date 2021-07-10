@@ -6,7 +6,7 @@ import { grey } from '@material-ui/core/colors'
 const Layout: React.FC = ({ children }) => {
     return (
         <div className="flex flex-col md:grid grid-cols-3 h-screen">
-            <div className="col-span-2 flex flex-col flex-grow px-8 pt-14 pb-8">
+            <div className="col-span-2 flex flex-col flex-grow px-16 pt-14 pb-8">
                 <Header />
                 {children}
             </div>
