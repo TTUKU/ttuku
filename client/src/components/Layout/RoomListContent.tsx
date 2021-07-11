@@ -85,11 +85,20 @@ const RoomListContent = () => {
                         <RoomItem
                             key={i}
                             onClick={() => {
+                                if (room.id === currentRoom?.id) return
                                 socket.emit('joinRoom', {
                                     room: room.id,
                                 })
                             }}
                             // disabled={room.id === currentRoom?.id}
+                            style={
+                                room.id === currentRoom?.id
+                                    ? {
+                                          color: grey['400'],
+                                          cursor: 'default',
+                                      }
+                                    : {}
+                            }
                         >
                             <div className="text-xl font-bold">{room.name}</div>
                             <div className="flex justify-between">
