@@ -63,12 +63,20 @@ export class RoomGateway {
                     message: '방장이 방을 삭제했어요!',
                 })
             })
-            return
+            socket.emit('alert', {
+                type: 'info',
+                message: '방이 삭제되었어요.',
+            })
+            return this.updateRoomList()
         } else {
             room = this.room.rooms.find((x) => x.members.includes(socket))
             if (room) {
                 room.removeMember(socket)
             }
+            socket.emit('alert', {
+                type: 'info',
+                message: '방에서 나갔어요!',
+            })
         }
         this.updateRoomList()
     }

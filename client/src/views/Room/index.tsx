@@ -5,7 +5,7 @@ import { room } from '../../state'
 import { socket } from '../../utils'
 
 const Room = () => {
-    const [currentRoom] = useRecoilState(room)
+    const [currentRoom, setCurrentRoom] = useRecoilState(room)
     if (!currentRoom) return <Redirect to="/" />
 
     useEffect(() => {

@@ -7,9 +7,8 @@ import {
     ThemeProvider,
 } from '@material-ui/core'
 import { useRecoilValue } from 'recoil'
-import { room } from '../../state'
+import { room, rooms } from '../../state'
 import { socket } from '../../utils'
-import { Room } from '../../typings'
 import { makeStyles } from '@material-ui/styles'
 import { grey, blueGrey } from '@material-ui/core/colors'
 
@@ -46,7 +45,7 @@ const PlayerIcon = styled('span')({
 })
 
 const RoomListContent = () => {
-    // const roomList = useRecoilValue(rooms)
+    const roomList = useRecoilValue(rooms)
     const currentRoom = useRecoilValue(room)
 
     const classes = withStyles()
@@ -82,15 +81,7 @@ const RoomListContent = () => {
                     }}
                     className="flex-grow pr-2"
                 >
-                    {(
-                        new Array(100).fill({
-                            id: '1',
-                            players: 1,
-                            owner: socket.id,
-                            name: '테스트',
-                            maxPlayers: 8,
-                        }) as Room[]
-                    ).map((room, i) => (
+                    {roomList.map((room, i) => (
                         <RoomItem
                             key={i}
                             onClick={() => {
