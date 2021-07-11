@@ -65,6 +65,10 @@ const RoomListContent = () => {
                         <InputBase
                             className="flex-grow"
                             placeholder="방 이름 또는 규칙으로 검색하기"
+                            inputProps={{
+                                className:
+                                    'placeholder-bold placeholder-font-notosanskr placeholder-',
+                            }}
                         />
                     </div>
                     <div className={classes.filterButton}>
@@ -100,7 +104,12 @@ const RoomListContent = () => {
                                     : {}
                             }
                         >
-                            <div className="text-xl font-bold">{room.name}</div>
+                            <div className="flex justify-between">
+                                <div className="text-xl font-bold">
+                                    {room.name}
+                                </div>
+                                {room.id === currentRoom?.id && <div>와아</div>}
+                            </div>
                             <div className="flex justify-between">
                                 <div className="text-sm">
                                     <span>한방금지</span>&nbsp;

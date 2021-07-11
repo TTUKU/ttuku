@@ -5,6 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    .placeholder-bold::placeholder{
+        font-weight: 700;
+    }
+    .placeholder-grey::placeholder {
+        color: #BDBDBD;
+    }
+    .placeholder-font-notosanskr::placeholder {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+}
+
 .dark ::-webkit-scrollbar {
     width: 5px;
 }
