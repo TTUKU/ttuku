@@ -5,8 +5,17 @@ import './assets/style.scss'
 import { RecoilRoot } from 'recoil'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
+import * as Sentry from '@sentry/react'
+import { Integrations } from '@sentry/tracing'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fab)
+Sentry.init({
+    dsn: 'https://e56a76a6dd02433bbc75fbf4c2305ecc@sentry.pikokr.dev/2',
+    integrations: [new Integrations.BrowserTracing()],
+    tracesSampleRate: 1.0,
+})
+
+library.add(fab, fas)
 
 ReactDOM.render(
     <RecoilRoot>
