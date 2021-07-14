@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
@@ -15,7 +16,7 @@ const Room = () => {
     }, [])
 
     return (
-        <div>
+        <div style={{ marginTop: 30 }}>
             <div
                 style={{
                     backgroundColor: '#263238',
@@ -24,8 +25,24 @@ const Room = () => {
                     color: '#fff',
                     padding: '16px 50px',
                 }}
+                className="flex items-center"
             >
+                <FontAwesomeIcon
+                    icon={['fas', 'gamepad']}
+                    style={{ marginRight: 12, fontSize: 25 }}
+                />
+
                 {currentRoom.name}
+            </div>
+            <div
+                style={{
+                    backgroundColor: '#263238',
+                    color: '#fff',
+                    padding: '27px 49px',
+                    marginTop: 5,
+                }}
+            >
+                asdf
             </div>
         </div>
     )
