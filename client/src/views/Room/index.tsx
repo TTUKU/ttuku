@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import { room } from '../../state'
 import { socket } from '../../utils'
+import RoomPlayer from './RoomPlayer'
 
 const Room = () => {
     const [currentRoom] = useRecoilState(room)
@@ -16,7 +17,7 @@ const Room = () => {
     }, [])
 
     return (
-        <div style={{ marginTop: 30 }}>
+        <div style={{ marginTop: 30 }} className="flex flex-col h-full">
             <div
                 style={{
                     backgroundColor: '#263238',
@@ -40,9 +41,19 @@ const Room = () => {
                     color: '#fff',
                     padding: '27px 49px',
                     marginTop: 5,
+                    flexGrow: 1,
+                    gap: 40,
                 }}
+                className="grid-cols-4 grid"
             >
-                asdf
+                <RoomPlayer />
+                <RoomPlayer />
+                <RoomPlayer />
+                <RoomPlayer />
+                <RoomPlayer />
+                <RoomPlayer />
+                <RoomPlayer />
+                <RoomPlayer />
             </div>
         </div>
     )
