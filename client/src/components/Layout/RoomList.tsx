@@ -28,12 +28,15 @@ const RoomList = () => {
         palette: {
             mode: 'dark',
         },
+        typography: {
+            fontFamily: '"Noto Sans KR", sans-serif',
+        },
     })
 
     return (
         <ThemeProvider theme={theme}>
             <div className="flex flex-col h-full gap-4 dark">
-                <Typography variant="h4" fontWeight={700}>
+                <Typography variant="h4" fontWeight={700} marginLeft={3}>
                     {roomCreate ? '방 만들기' : '놀이방 목록'}
                 </Typography>
                 <div className="flex-grow">

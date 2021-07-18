@@ -108,7 +108,9 @@ const RoomListContent = () => {
                                 <div className="text-xl font-bold">
                                     {room.name}
                                 </div>
-                                {room.id === currentRoom?.id && <div>와아</div>}
+                                {room.id === currentRoom?.id && (
+                                    <Icon>pin_drop</Icon>
+                                )}
                             </div>
                             <div className="flex justify-between">
                                 <div className="text-sm">
