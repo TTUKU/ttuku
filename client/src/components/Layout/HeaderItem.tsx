@@ -1,6 +1,7 @@
 import React from 'react'
 import { Fab, Icon } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import { Typography } from '@material-ui/core/index'
 
 const HeaderItem: React.FC<{
     active?: boolean
@@ -24,7 +25,9 @@ const HeaderItem: React.FC<{
             >
                 <Icon>{icon}</Icon>
             </Fab>
-            <div className="text-center font-bold">{text}</div>
+            <Typography className="text-center" fontWeight={700}>
+                {text}
+            </Typography>
         </div>
     )
 }

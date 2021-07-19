@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import { Icon, ListItemIcon, Menu, MenuItem } from '@material-ui/core'
 import { socket } from '../../utils'
 import LoginPage from '../Login'
+import { Button } from '@material-ui/core/index'
 
 const UserMenu = () => {
     const [user, setUser] = useRecoilState(userState)
@@ -17,9 +18,9 @@ const UserMenu = () => {
     return user === null ? null : user === false ? (
         <>
             <LoginPage open={loginModal} onClose={() => setLoginModal(false)} />
-            <a className="cursor-pointer" onClick={() => setLoginModal(true)}>
+            <Button onClick={() => setLoginModal(true)} variant="contained">
                 로그인
-            </a>
+            </Button>
         </>
     ) : (
         <>
