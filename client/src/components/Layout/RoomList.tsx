@@ -28,6 +28,9 @@ const RoomList = () => {
         palette: {
             mode: 'dark',
         },
+        typography: {
+            fontFamily: '"Noto Sans KR", sans-serif',
+        },
     })
 
     return (
