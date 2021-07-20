@@ -2,10 +2,11 @@ import React from 'react'
 import { yellow } from '@material-ui/core/colors'
 import { Typography } from '@material-ui/core/index'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import rho from '../../assets/img/rho_left.png'
 
 const RoomPlayer = () => {
     return (
-        <div className="bg-white text-black">
+        <div className="bg-white text-black flex flex-col">
             <div
                 style={{
                     paddingTop: 10,
@@ -24,6 +25,21 @@ const RoomPlayer = () => {
                     fontWeight={700}
                 >
                     방장이애오!
+                </Typography>
+            </div>
+            <img
+                style={{
+                    marginTop: 15,
+                    marginLeft: 15,
+                    marginRight: 15,
+                    height: '100%',
+                }}
+                src={rho}
+                alt="avatar"
+            />
+            <div style={{ margin: 15 }}>
+                <Typography fontSize={24} fontWeight={700}>
+                    로쨩
                 </Typography>
             </div>
         </div>

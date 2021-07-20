@@ -43,6 +43,8 @@ const Room = () => {
                     marginTop: 5,
                     flexGrow: 1,
                     gap: 40,
+                    height: 0,
+                    overflowY: 'scroll',
                 }}
                 className="grid-cols-4 grid"
             >
