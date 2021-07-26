@@ -32,13 +32,28 @@ const RoomPlayer = () => {
                     marginTop: 15,
                     marginLeft: 15,
                     marginRight: 15,
-                    height: '100%',
+                    width: 'auto',
+                    height: 'auto',
                 }}
                 src={rho}
                 alt="avatar"
             />
             <div style={{ margin: 15 }}>
                 <Typography fontSize={24} fontWeight={700}>
+                    <span
+                        style={{
+                            background: '#263238',
+                            color: '#fff',
+                            borderRadius: '50%',
+                            width: 40,
+                            height: 40,
+                            display: 'inline-flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                    >
+                        88
+                    </span>
                     로쨩
                 </Typography>
             </div>

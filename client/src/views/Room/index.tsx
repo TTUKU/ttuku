@@ -41,12 +41,9 @@ const Room = () => {
                     color: '#fff',
                     padding: '27px 49px',
                     marginTop: 5,
-                    flexGrow: 1,
                     gap: 40,
-                    height: 0,
-                    overflowY: 'scroll',
                 }}
-                className="grid-cols-4 grid"
+                className="grid-cols-4 grid flex-grow"
             >
                 <RoomPlayer />
                 <RoomPlayer />
