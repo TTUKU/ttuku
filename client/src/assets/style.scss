@@ -6,11 +6,11 @@
 @tailwind utilities;
 
 @layer utilities {
-    .placeholder-bold::placeholder{
+    .placeholder-bold::placeholder {
         font-weight: 700;
     }
     .placeholder-grey::placeholder {
-        color: #BDBDBD;
+        color: #bdbdbd;
     }
     .placeholder-font-notosanskr::placeholder {
         font-family: 'Noto Sans KR', sans-serif;
@@ -28,7 +28,6 @@
 .dark ::-webkit-scrollbar-thumb {
     background: #bdbdbd;
 }
-
 
 ::-webkit-scrollbar {
     width: 5px;
