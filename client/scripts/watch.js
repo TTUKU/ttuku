@@ -1,9 +1,12 @@
 const craco = require('@craco/craco')
 const webpack = require('webpack')
+const path = require('path')
 
 console.log('설정 불러오는중...')
 
 const config = craco.createWebpackDevConfig(require('../craco.config'))
+
+config.resolve.alias['~'] = path.join(__dirname, '..', 'src')
 
 process.env.NODE_ENV = 'development'
 

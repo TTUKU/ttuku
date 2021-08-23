@@ -8,10 +8,9 @@ install:
 	yarn
 	cd client && yarn
 
-dev-backend:
+dev-server:
 	yarn start:dev
-
 dev-client:
-	yarn client:dev
+	cd client && node scripts/watch
 
-dev: dev-backend dev-client
+dev: dev-server dev-client
