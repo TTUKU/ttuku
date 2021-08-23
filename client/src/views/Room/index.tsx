@@ -17,7 +17,10 @@ const Room = () => {
     }, [])
 
     return (
-        <div style={{ marginTop: 30 }} className="flex flex-col h-full">
+        <div
+            style={{ marginTop: 30, boxSizing: 'border-box' }}
+            className="flex flex-col h-full"
+        >
             <div
                 style={{
                     backgroundColor: '#263238',
@@ -42,6 +45,8 @@ const Room = () => {
                     padding: '27px 49px',
                     marginTop: 5,
                     gap: 40,
+                    boxSizing: 'border-box',
+                    height: 0,
                 }}
                 className="grid-cols-4 grid flex-grow"
             >

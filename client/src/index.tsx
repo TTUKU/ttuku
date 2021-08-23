@@ -8,6 +8,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import * as Sentry from '@sentry/react'
 import { Integrations } from '@sentry/tracing'
 import { fas } from '@fortawesome/free-solid-svg-icons'
+import 'react-aspect-ratio-img/css/style.css'
 
 Sentry.init({
     dsn: 'https://e56a76a6dd02433bbc75fbf4c2305ecc@sentry.pikokr.dev/2',
