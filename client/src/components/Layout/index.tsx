@@ -1,6 +1,7 @@
 import React from 'react'
 import Header from './Header'
-import { styled } from '@material-ui/core'
+import { Box, styled } from '@material-ui/core'
+import Sidebar from '~/components/Layout/Sidebar'
 
 const Spacer = styled('div')(({ theme }) => theme.mixins.toolbar)
 
@@ -8,10 +9,11 @@ const Layout: React.FC = ({ children }) => {
     return (
         <div>
             <Header />
-            <main>
+            <Sidebar />
+            <Box component="main" sx={{ p: 3 }}>
                 <Spacer />
                 {children}
-            </main>
+            </Box>
         </div>
     )
 }

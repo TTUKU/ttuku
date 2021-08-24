@@ -1,13 +1,47 @@
 import React from 'react'
-import { AppBar, Button, Toolbar, Typography } from '@material-ui/core'
+import {
+    AppBar,
+    Button,
+    IconButton,
+    Toolbar,
+    Typography,
+} from '@material-ui/core'
+import { Menu as MenuIcon } from '@material-ui/icons'
+import { SIDEBAR_WIDTH } from '~/constants'
+import { useSetRecoilState } from 'recoil'
+import { SDrawerOpen } from '~/state'
 
 const Header = () => {
+    const setDrawerOpen = useSetRecoilState(SDrawerOpen)
+
     return (
-        <AppBar position="fixed">
-            <Toolbar>
+        <AppBar
+            position="fixed"
+            sx={{
+                width: {
+                    xs: '100vw',
+                    md: `calc(100vw - ${SIDEBAR_WIDTH}px)`,
+                },
+                left: 0,
+            }}
+        >
+            <Toolbar style={{ gap: 10 }}>
                 <Typography variant="h6">TTUKU</Typography>
                 <div style={{ flexGrow: 1 }} />
                 <Button color="inherit">로그인</Button>
+                <IconButton
+                    color="inherit"
+                    size="small"
+                    sx={{
+                        display: {
+                            xs: 'inline-flex',
+                            md: 'none',
+                        },
+                    }}
+                    onClick={() => setDrawerOpen(true)}
+                >
+                    <MenuIcon />
+                </IconButton>
             </Toolbar>
         </AppBar>
     )
