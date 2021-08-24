@@ -15,4 +15,13 @@ model User {
     nick String @unique
     money BigInt @default(0)
     exp BigInt @default(0)
+    authStrategies UserAuthStrategy[]
+}
+
+model UserAuthStrategy {
+    id Int @id @default(autoincrement())
+    user User @relation(references: [id], fields: [userID])
+    userID Int
+    provider String
+    uid String
 }
