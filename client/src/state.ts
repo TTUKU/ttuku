@@ -18,3 +18,8 @@ export const SUser = selector<TUser | null>({
         }
     },
 })
+
+export const SLoginMenuOpen = atom<boolean>({
+    key: 'loginMenuOpen',
+    default: false,
+})
