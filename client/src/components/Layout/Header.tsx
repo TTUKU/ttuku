@@ -8,8 +8,21 @@ import {
 } from '@material-ui/core'
 import { Menu as MenuIcon } from '@material-ui/icons'
 import { SIDEBAR_WIDTH } from '~/constants'
-import { useSetRecoilState } from 'recoil'
-import { SDrawerOpen } from '~/state'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { SDrawerOpen, SUser } from '~/state'
+
+const UserMenu = () => {
+    const user = useRecoilValue(SUser)
+    return (
+        <>
+            {user ? (
+                <div>{user.nick}</div>
+            ) : (
+                <Button color="inherit">로그인</Button>
+            )}
+        </>
+    )
+}
 
 const Header = () => {
     const setDrawerOpen = useSetRecoilState(SDrawerOpen)
@@ -28,7 +41,9 @@ const Header = () => {
             <Toolbar style={{ gap: 10 }}>
                 <Typography variant="h6">TTUKU</Typography>
                 <div style={{ flexGrow: 1 }} />
-                <Button color="inherit">로그인</Button>
+                <React.Suspense fallback={<div>Loading...</div>}>
+                    <UserMenu />
+                </React.Suspense>
                 <IconButton
                     color="inherit"
                     size="small"
